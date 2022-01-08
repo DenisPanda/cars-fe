@@ -31,7 +31,6 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -41,43 +40,49 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumwarning": "500kb",
-                  "maximumerror": "1mb"
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
                 },
                 {
-                  "type": "anycomponentstyle",
-                  "maximumwarning": "2kb",
-                  "maximumerror": "4kb"
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
               ],
-              "filereplacements": [
+              "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "outputhashing": "all"
+              "outputHashing": "all"
             },
             "acceptance": {
+              "buildOptimizer": true,
+              "optimization": true,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumwarning": "500kb",
-                  "maximumerror": "1mb"
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
                 },
                 {
-                  "type": "anycomponentstyle",
-                  "maximumwarning": "2kb",
-                  "maximumerror": "4kb"
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
               ],
-              "filereplacements": [
+              "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "outputhashing": "all"
+              "outputHashing": "all"
             },
             "development": {
               "buildOptimizer": false,
@@ -121,7 +126,6 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
