@@ -6,7 +6,11 @@
     "start": "ng serve --port=4571",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build:main": "ng build --configuration production",
+    "build:staging": "ng build --configuration staging",
+    "build:acceptance": "ng build --configuration acceptance",
+    "deploy": "firebase deploy"
   },
   "private": true,
   "dependencies": {
@@ -15,6 +19,7 @@
     "@angular/common": "~13.1.0",
     "@angular/compiler": "~13.1.0",
     "@angular/core": "~13.1.0",
+    "@angular/fire": "^7.2.0",
     "@angular/forms": "~13.1.0",
     "@angular/material": "^13.1.1",
     "@angular/platform-browser": "~13.1.0",
@@ -23,7 +28,9 @@
     "lodash-es": "^4.17.21",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "firebase": "^9.4.0",
+    "rxfire": "^6.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.1.2",
@@ -32,6 +39,7 @@
     "@types/jasmine": "~3.10.0",
     "@types/lodash-es": "^4.17.5",
     "@types/node": "^12.11.1",
+    "firebase-tools": "^9.23.3",
     "jasmine-core": "~3.10.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",

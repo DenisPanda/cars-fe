@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "cars-d27b5": {
+      "hosting": {
+        "cars-fe": [
+          "cars-d27b5"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "cars-d27b5"
+  }
+}
