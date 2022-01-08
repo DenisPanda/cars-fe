@@ -3,5 +3,5 @@ import { merge } from "lodash-es";
 
 export const environment =  merge(baseConfig, {
   production: true,
-  title: 'Production Car app'
+  title: 'Acceptance Car app'
 });
