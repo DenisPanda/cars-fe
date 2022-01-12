@@ -1,0 +1,12 @@
+@use '../../assets/styles/vars';
+@use '../../assets/styles/mixins' as mix;
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  @include mix.app-paddings;
+}
+

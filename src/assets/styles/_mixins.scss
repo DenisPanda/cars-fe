@@ -1,0 +1,5 @@
+@use './vars';
+
+@mixin app-paddings {
+  padding: vars.$padding-TB vars.$padding-LR;
+}
