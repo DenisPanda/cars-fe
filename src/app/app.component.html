@@ -1,10 +1,10 @@
-<button class="theme-btn" (click)="toggleTheme()">
+<button [matTooltip]="'Dark/light mode switch'" mat-mini-fab class="theme-btn" (click)="toggleTheme()">
   <ng-container [ngSwitch]="appTheme$ | async">
     <ng-container *ngSwitchCase="themeEnum.default">
-      dark
+      <mat-icon class="mat-18">brightness_3</mat-icon>
     </ng-container>
     <ng-container *ngSwitchCase="themeEnum.light">
-      Light
+      <mat-icon class="mat-18">brightness_5</mat-icon>
     </ng-container>
   </ng-container>
 

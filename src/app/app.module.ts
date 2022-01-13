@@ -5,7 +5,12 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 import { environment as env } from 'src/environments/environment';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,8 +20,12 @@ import { environment as env } from 'src/environments/environment';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTooltipModule,
+    HttpClientModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

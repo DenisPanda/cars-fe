@@ -1,5 +1,5 @@
 @use '../../assets/styles/vars';
-@use '../../assets/styles/mixins' as mix;
+@use '../../assets/styles/mixins'as mix;
 
 :host {
   display: flex;
@@ -10,3 +10,100 @@
   @include mix.app-paddings;
 }
 
+mat-card {
+  display: block;
+  $padding-LR: 3em;
+  padding-left: $padding-LR;
+  padding-right: $padding-LR;
+  max-width: 400px;
+
+  animation: fade-in 1s ease-out;
+}
+
+form {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row wrap;
+
+  button {
+    width: 100%;
+    position: relative;
+  }
+}
+
+.title {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  font-size: vars.$txt-xl;
+  padding: 0.5em;
+
+  letter-spacing: 0.15em;
+}
+
+mat-form-field {
+  &:first-of-type {
+    padding-bottom: 0.5em;
+  }
+
+  padding: 1em;
+  flex-grow: 0.8;
+}
+
+form {
+
+  button,
+  mat-form-field,
+  .title {
+    animation: fade-top 1.5s ease-out;
+  }
+}
+
+.title {
+  animation: fade-top 1.5s ease-out;
+}
+
+input {
+  width: 100%;
+}
+
+@keyframes fade-top {
+  $top: 20px;
+
+  0% {
+    top: -$top;
+    opacity: 0;
+  }
+
+  10% {
+    top: -$top;
+    opacity: 0;
+  }
+
+  70% {
+    top: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    top: 50px;
+    opacity: 0;
+  }
+
+  70% {
+    top: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
