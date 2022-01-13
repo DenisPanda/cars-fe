@@ -71,3 +71,11 @@ body {
     background-color: rgba(85, 85, 85, 0.5);
   }
 }
+
+button {
+
+  &:hover {
+    opacity: 0.6;
+    transition: all 0.2s ease-in-out;
+  }
+}

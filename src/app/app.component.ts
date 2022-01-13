@@ -14,6 +14,7 @@ export class AppComponent {
   appTheme$ = this.tS.appTheme$;
 
   constructor(titleS: Title, private tS: ThemeService){
+
     this.tS.appTheme = AppTheme.default;
 
     // set page title depending on the build

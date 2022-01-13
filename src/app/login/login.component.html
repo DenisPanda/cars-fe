@@ -1,4 +1,17 @@
 <mat-card>
-  <p>dfdfd</p>
+  <div class="title">LOGIN</div>
 
+  <form [formGroup]="form" (ngSubmit)="formSubmit()">
+    <mat-form-field >
+      <mat-label>Email</mat-label>
+    <input placeholder="JohnDoe@example.com" type="email" matInput formControlName='email'>
+    </mat-form-field>
+
+    <mat-form-field >
+      <mat-label>Password</mat-label>
+      <input placeholder="Min 8 characters length" type="password" matInput formControlName='password'>
+    </mat-form-field>
+
+    <button type="submit" mat-raised-button color="primary">SUBMIT</button>
+  </form>
 </mat-card>

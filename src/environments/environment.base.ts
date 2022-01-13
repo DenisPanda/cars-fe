@@ -9,5 +9,6 @@ export const baseConfig = {
     storageBucket: "cars-d27b5.appspot.com",
     messagingSenderId: "243437391257",
     appId: "1:243437391257:web:02e109d49bb67ae938d708"
-  }
+  },
+  apiUri: 'localhost:3000'
 };
