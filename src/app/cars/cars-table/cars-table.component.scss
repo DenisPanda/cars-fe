@@ -1,0 +1,19 @@
+.full-width-table {
+  width: 100%;
+  min-width: 600px;
+  overflow-y: auto;
+
+  tr {
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+}
+
+.container {
+  width: 100%;
+}
+
+.table-wrapper {
+  overflow-y: auto;
+}

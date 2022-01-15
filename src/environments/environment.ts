@@ -8,6 +8,7 @@ import { baseConfig } from './environment.base';
 export const environment = merge(baseConfig, {
   production: false,
   title: 'Development Car app',
+  headerTitle: 'CARS'
 });
 
 /*

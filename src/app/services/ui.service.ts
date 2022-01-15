@@ -1,5 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable, Renderer2, RendererFactory2 } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ export class UiService {
 
   constructor(
     @Inject(DOCUMENT) private doc: Document,
-    rendererFactory: RendererFactory2
+    rendererFactory: RendererFactory2,
+    private _sB: MatSnackBar
   ) {
     // renderer isn't available in services by default
     // but we can bypass this behaviour by creating a
@@ -35,5 +37,12 @@ export class UiService {
     if (klass) {
       this.renderer.removeClass(this.doc.body, klass);
     }
+  }
+
+  /**
+   * Show snack bar
+   */
+  snack(msg: string, action = 'OK', duration = 10000) {
+      this._sB.open(msg, action, {duration});
   }
 }

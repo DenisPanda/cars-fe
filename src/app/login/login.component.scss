@@ -1,6 +1,8 @@
 @use '../../assets/styles/vars';
 @use '../../assets/styles/mixins'as mix;
 
+$form-padd: 1em;
+
 :host {
   display: flex;
   align-items: center;
@@ -34,6 +36,14 @@ form {
   }
 }
 
+.form-errors {
+  padding: 0.5em $form-padd;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
 .title {
   display: flex;
   position: relative;
@@ -46,16 +56,17 @@ form {
 }
 
 mat-form-field {
+  width: 100%;
+
   &:first-of-type {
     padding-bottom: 0.5em;
   }
 
-  padding: 1em;
+  padding: $form-padd;
   flex-grow: 0.8;
 }
 
 form {
-
   button,
   mat-form-field,
   .title {
@@ -64,11 +75,39 @@ form {
 }
 
 .title {
-  animation: fade-top 1.5s ease-out;
+  animation: fade-top-title 1.5s ease-out;
 }
 
 input {
   width: 100%;
+}
+
+@keyframes fade-top-title {
+  $top: 20px;
+
+  0% {
+    top: -$top;
+    opacity: 0;
+    letter-spacing: 1em;
+  }
+
+  10% {
+    top: -$top;
+    opacity: 0;
+  }
+
+
+  70% {
+    top: 0;
+  }
+
+  90% {
+    letter-spacing: 0.15em;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes fade-top {

@@ -1,4 +1,6 @@
+import { environment as env } from './../../environments/environment';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 /**
@@ -15,7 +17,7 @@ export class AuthService {
   private _token = this.tokenFromCache();
   loggedIn$ = new BehaviorSubject(!!this._token);
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   get token(): string | null {
     return this._token;
@@ -31,6 +33,12 @@ export class AuthService {
         this.loggedIn$.next(false);
       }
     }
+  }
+
+  login(token: string): void {
+    this.token = token;
+
+    this.router.navigate(env.afterLoginRoute)
   }
 
   logout(): void {

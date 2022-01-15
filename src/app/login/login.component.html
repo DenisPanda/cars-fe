@@ -1,6 +1,12 @@
 <mat-card>
   <div class="title">LOGIN</div>
 
+  <div class="form-errors">
+    <div *ngFor="let msg of errorMessages" class="error mat-error">
+      {{msg}}
+    </div>
+  </div>
+
   <form [formGroup]="form" (ngSubmit)="formSubmit()">
     <mat-form-field >
       <mat-label>Email</mat-label>

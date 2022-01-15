@@ -10,5 +10,9 @@ export const baseConfig = {
     messagingSenderId: "243437391257",
     appId: "1:243437391257:web:02e109d49bb67ae938d708"
   },
-  apiUri: 'localhost:3000'
+  apiUri: 'http://localhost:3000',
+  /**
+   * Navigate to this route after successful login.
+   */
+  afterLoginRoute: ['/', 'cars']
 };
