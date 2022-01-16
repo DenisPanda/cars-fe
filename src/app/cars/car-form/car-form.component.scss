@@ -1,0 +1,39 @@
+form {
+  padding: 20px 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-form-field {
+  margin: 10px;
+}
+
+mat-form-field {
+  max-width: 100px;
+}
+
+.field-year {
+  max-width: 60px;
+}
+
+.form-errors {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: -20px;
+}
+
+@media (max-width: 800px) {
+  form {
+    flex-flow: column;
+    min-width: 250px;
+  }
+
+  mat-form-field, .field-year {
+    max-width: 100%;
+  }
+}

@@ -1,8 +1,11 @@
+import { environment } from './../../environments/environment.staging';
+import { AuthService } from './../services/auth.service';
 import { FetchApiService } from './../services/fetch-api.service';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { capitalize as _capitalize } from 'lodash-es';
 import { UiService } from '../services/ui.service';
+import { Router } from '@angular/router';
 
 const FIELD_MIN_LEN = 8;
 
@@ -19,10 +22,17 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private uiS: UiService,
-    private fAS: FetchApiService
+    private fAS: FetchApiService,
+    private authS: AuthService,
+    private cDR: ChangeDetectorRef,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    if (this.authS.loggedIn) {
+      this.router.navigate(environment.afterLoginRoute);
+    }
+
     this.initForm();
   }
 
@@ -41,13 +51,26 @@ export class LoginComponent implements OnInit {
   formSubmit(): void {
     this.clearErrorMessages();
 
-    console.log('Submit', this.form);
     if (this.form.valid) {
       this.fAS.login(this.form.value).subscribe({
-        next: () => {},
+        next: (res) => {
+          this.authS.login(res.token, res.email);
+        },
+        error: (err) => {
+          console.error('Login error:', err);
+
+          if (err) {
+            if (err.status === 400) {
+              this.setErrorMessages(['Server responded: "Bad payload".']);
+            }
+
+            if (err.status === 404) {
+              this.setErrorMessages(['Server responded: "User not found".']);
+            }
+          }
+        }
       });
 
-      console.log('Form valid');
     } else {
       console.info('Form invalid');
       this.setErrorMessages();
@@ -82,11 +105,11 @@ export class LoginComponent implements OnInit {
                 break;
 
               case 'minlength':
-                errMsg = `${fieldName} minimal required character length is ${FIELD_MIN_LEN}`;
+                errMsg = `${fieldName} minimal required character length is ${FIELD_MIN_LEN}.`;
                 break;
 
               default:
-                errMsg = 'Unknown field error';
+                errMsg = 'Unknown field error.';
                 break;
             }
 
@@ -98,5 +121,7 @@ export class LoginComponent implements OnInit {
 
     // SET REMOTE ERRORS
     this.errorMessages = [...this.errorMessages, ...remoteErrors];
+
+    this.cDR.detectChanges();
   }
 }

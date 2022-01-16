@@ -17,7 +17,7 @@ export namespace requestBody {
 
   export interface CreateVehicle {
     make: string;
-    year: number;
+    year: number | string;
     model: string;
   }
 }
@@ -39,7 +39,8 @@ export namespace responseBody {
   export type GetVehicles = PaginatedResponse<Vehicle[]>;
 
   export interface LoginBody {
-    token: string
+    token: string;
+    email: string;
   }
 
   export type Login = BaseResponse<LoginBody>;

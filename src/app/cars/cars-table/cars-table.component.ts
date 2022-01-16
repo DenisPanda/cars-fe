@@ -1,3 +1,4 @@
+import { CarsSearchForm } from './../../types/cars';
 import { Vehicle } from './../../types/vehicle.types';
 import { FetchApiService } from './../../services/fetch-api.service';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
@@ -28,5 +29,44 @@ export class CarsTableComponent implements AfterViewInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
+  }
+
+  search(data: CarsSearchForm | null) {
+    // avoid multiple page loads at component initialization
+    if (
+      !(
+        this.dataSource.searchTerm === null &&
+        (data?.search === null || data === null)
+      )
+    ) {
+      this.dataSource.searchTerm = (data && data.search) || null;
+      this.dataSource.searchAttribute = (data && data.attribute) || null;
+
+      this.resetParams();
+      this.triggerRefresh();
+    }
+  }
+
+  public triggerRefresh(): void {
+    this.dataSource?.triggerRefresh$.next();
+  }
+
+  resetPaginator(): void {
+    this.paginator.firstPage();
+  }
+
+  resetSort() {
+    this.sort.sort({
+      id: '',
+      active: ''
+    } as any);
+  }
+
+  /**
+   * Reset sort && search params
+   */
+  public resetParams() {
+    this.resetSort();
+    this.resetPaginator();
   }
 }

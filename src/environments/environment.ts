@@ -5,10 +5,10 @@ import { baseConfig } from './environment.base';
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-export const environment = merge(baseConfig, {
+export const environment = merge(baseConfig(), {
   production: false,
   title: 'Development Car app',
-  headerTitle: 'CARS'
+  headerTitle: 'CARS',
 });
 
 /*

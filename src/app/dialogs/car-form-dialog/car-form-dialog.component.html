@@ -1,0 +1,12 @@
+<mat-card>
+  <mat-card-title>ADD CAR FORM</mat-card-title>
+
+  <div class="form-wrapper">
+    <ng-container #form></ng-container>
+  </div>
+
+  <mat-card-actions>
+    <button (click)="close()" mat-button matTooltip="Don't want to login" color="accent">CANCEL</button>
+    <button (click)="submitForm()" mat-raised-button matTooltip="Go to login page" color="primary">SUBMIT</button>
+  </mat-card-actions>
+</mat-card>

@@ -1,3 +1,7 @@
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CarFormComponent } from './car-form.component';
@@ -8,6 +12,7 @@ describe('CarFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [RouterTestingModule, MatSnackBarModule, FormsModule, ReactiveFormsModule, HttpClientModule],
       declarations: [ CarFormComponent ]
     })
     .compileComponents();

@@ -1,7 +1,7 @@
 /**
  * Config shared between all envs
  */
-export const baseConfig = {
+export const baseConfig = () => ({
   firebaseConfig: {
     apiKey: "AIzaSyBaQKzH6MvWz7tuedTt_UI0j8IN4tqk80E",
     authDomain: "cars-d27b5.firebaseapp.com",
@@ -15,4 +15,4 @@ export const baseConfig = {
    * Navigate to this route after successful login.
    */
   afterLoginRoute: ['/', 'cars']
-};
+});

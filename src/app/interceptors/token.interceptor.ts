@@ -1,3 +1,4 @@
+import { UiService } from './../services/ui.service';
 import { AuthService } from './../services/auth.service';
 import { Injectable } from '@angular/core';
 import {
@@ -28,7 +29,7 @@ const EXCEPTIONS = [
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(private aS: AuthService) {}
+  constructor(private aS: AuthService, private uiS: UiService) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -64,6 +65,20 @@ export class TokenInterceptor implements HttpInterceptor {
     return obs.pipe(
       catchError((err) => {
         console.error('Error intercepted. Error: ', err);
+
+        switch (err.status) {
+          case 500:
+            this.uiS.snack('Server error!');
+            break;
+
+          case 403:
+            this.uiS.snack('Unauthorized!');
+            this.aS.logout();
+            break;
+
+          default:
+            break;
+        }
 
         return throwError(() => err);
       })

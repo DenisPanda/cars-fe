@@ -1,4 +1,16 @@
 <div class="table-wrapper">
-  <app-cars-table></app-cars-table>
+  <!-- Usually I would also put this in a wrapper but time is ticking -->
+  <mat-card>
+    <mat-card-title>ALL CARS</mat-card-title>
+    <mat-card-subtitle>Filter by make, model or year</mat-card-subtitle>
 
+    <app-cars-search-form #carForm (searchEvent$)="table.search($event)"></app-cars-search-form>
+
+    <mat-card-actions>
+      <button (click)="carForm.resetForm()" mat-button matTooltip="Clear search form" color="accent">CLEAR SEARCH</button>
+      <button (click)="addCarHandler()" mat-raised-button matTooltip="Add a car to the dataset" color="primary">+ADD CAR</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <app-cars-table #table></app-cars-table>
 </div>

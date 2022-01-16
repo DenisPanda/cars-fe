@@ -1,0 +1,12 @@
+<mat-card>
+  <mat-card-title>UNAUTHORIZED</mat-card-title>
+  <div class='txt'>
+    For this action you have to login. Would you like to login now?
+  </div>
+
+    <mat-card-actions>
+      <button (click)="close()" mat-button matTooltip="Don't want to login" color="accent">CANCEL</button>
+      <button (click)="goToLogin()" mat-raised-button matTooltip="Go to login page" color="primary">LOGIN</button>
+    </mat-card-actions>
+
+</mat-card>

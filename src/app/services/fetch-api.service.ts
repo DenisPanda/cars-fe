@@ -8,15 +8,30 @@ import { urlHelpers } from '../utils';
 
 const URLS = {
   login: () => `${env.apiUri}/login`,
-  getVehicles: (page: number, pageSize: number, sort: string | null, sortOrder: 1 | -1 | null) => {
-    return `${env.apiUri}/vehicles?${urlHelpers.paginationParams(
-      page,
-      pageSize
-    )}${sort && sortOrder ? `&${urlHelpers.sortParams(sort, sortOrder)}` : ''}`;
+  // @TODO: should be changed to an object instead of parameters
+  getVehicles: (
+    page: number,
+    pageSize: number,
+    sort: string | null,
+    sortOrder: 1 | -1 | null,
+    searchTerm: string | null,
+    searchAttribute: string | null
+  ) => {
+    return (
+      `${env.apiUri}/vehicles?${urlHelpers.paginationParams(page, pageSize)}` +
+      `${
+        sort && sortOrder ? `&${urlHelpers.sortParams(sort, sortOrder)}` : ''
+      }` +
+      `${
+        searchTerm && searchAttribute
+          ? `&${urlHelpers.searchParams(searchAttribute, searchTerm)}`
+          : ''
+      }`
+    );
   },
   createUser: () => `${env.apiUri}/user`,
   createVehicle: () => `${env.apiUri}/vehicle`,
-}
+};
 
 @Injectable({
   providedIn: 'root',
@@ -34,10 +49,12 @@ export class FetchApiService {
     page = 1,
     pageSize = 10,
     sort: string | null = null,
-    sortOrder: 1 | -1 | null = null
+    sortOrder: 1 | -1 | null = null,
+    searchTerm: string | null,
+    searchAttribute: string | null
   ): Observable<responseBody.GetVehicles> {
     return this.http.get<responseBody.GetVehicles>(
-      URLS.getVehicles(page, pageSize, sort, sortOrder)
+      URLS.getVehicles(page, pageSize, sort, sortOrder, searchTerm, searchAttribute)
     );
   }
 

@@ -1,1 +1,24 @@
-<p>car-form works!</p>
+<div class="form-errors">
+  <div *ngFor="let msg of errorMessages" class="error mat-error">
+    {{msg}}
+  </div>
+</div>
+
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <mat-form-field >
+      <mat-label>Make</mat-label>
+    <input placeholder="e.g. BMW" type="text" matInput formControlName='make'>
+    </mat-form-field>
+
+    <mat-form-field >
+      <mat-label>Model</mat-label>
+      <input placeholder="e.g. Series 3" type="text" matInput formControlName='model'>
+    </mat-form-field>
+
+    <mat-form-field class="field-year" >
+      <mat-label>Year</mat-label>
+      <input type="number" matInput formControlName='year'>
+    </mat-form-field>
+
+  <button #submitBtn style="visibility: hidden;" type="submit"></button>
+</form>

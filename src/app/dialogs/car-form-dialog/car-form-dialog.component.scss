@@ -1,0 +1,11 @@
+mat-card {
+  max-width: 500px;
+}
+
+@media (max-width: 800px) {
+  mat-card-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

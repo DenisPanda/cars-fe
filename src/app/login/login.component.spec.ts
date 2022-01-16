@@ -1,3 +1,4 @@
+import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { UiService } from './../services/ui.service';
@@ -17,7 +18,8 @@ describe('LoginComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         MatSnackBarModule,
-        HttpClientModule
+        HttpClientModule,
+        RouterTestingModule
       ],
       providers: [
         UiService,

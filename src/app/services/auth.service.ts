@@ -8,6 +8,7 @@ import { BehaviorSubject } from 'rxjs';
  */
 enum SSNamespace {
   TOKEN = 'session_storage_token',
+  USER = 'session_storage_user',
 }
 
 @Injectable({
@@ -16,6 +17,11 @@ enum SSNamespace {
 export class AuthService {
   private _token = this.tokenFromCache();
   loggedIn$ = new BehaviorSubject(!!this._token);
+
+  /**
+   * Currently logged in user
+   */
+  user: null | { email: string } = this.userFromCache();
 
   constructor(private router: Router) {}
 
@@ -35,10 +41,18 @@ export class AuthService {
     }
   }
 
-  login(token: string): void {
-    this.token = token;
+  get loggedIn(): boolean {
+    return !!this.loggedIn$.value;
+  }
 
-    this.router.navigate(env.afterLoginRoute)
+  login(token: string, email: string): void {
+    this.token = token;
+    this.user = { email };
+
+    this.saveTokenToCache();
+    this.saveUserToCache();
+
+    this.router.navigate(env.afterLoginRoute);
   }
 
   logout(): void {
@@ -52,11 +66,25 @@ export class AuthService {
     return token || null;
   }
 
-  saveTokenToCache(token: string | null): void {
-    if (token) {
-      sessionStorage.setItem(SSNamespace.TOKEN, token);
+  userFromCache(): {email: string} | null {
+    const user = sessionStorage.getItem(SSNamespace.USER);
+
+    return user && JSON.parse(user) || null;
+  }
+
+  saveTokenToCache(): void {
+    if (this.token) {
+      sessionStorage.setItem(SSNamespace.TOKEN, this.token);
     } else {
       sessionStorage.removeItem(SSNamespace.TOKEN);
+    }
+  }
+
+  saveUserToCache(): void {
+    if (this.user) {
+      sessionStorage.setItem(SSNamespace.USER, JSON.stringify(this.user));
+    } else {
+      sessionStorage.removeItem(SSNamespace.USER);
     }
   }
 

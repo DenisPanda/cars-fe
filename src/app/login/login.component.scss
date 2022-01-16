@@ -37,7 +37,7 @@ form {
 }
 
 .form-errors {
-  padding: 0.5em $form-padd;
+  padding: $form-padd;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -53,6 +53,11 @@ form {
   padding: 0.5em;
 
   letter-spacing: 0.15em;
+
+  span {
+    position: absolute;
+    display: block;
+  }
 }
 
 mat-form-field {
@@ -80,6 +85,16 @@ form {
 
 input {
   width: 100%;
+}
+
+.btn-group {
+  display: flex;
+  flex-flow: column nowrap;
+  flex-grow: 1;
+
+  & button:last-of-type {
+    margin-top: 10px;
+  }
 }
 
 @keyframes fade-top-title {

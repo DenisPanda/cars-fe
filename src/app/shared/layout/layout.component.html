@@ -1,12 +1,31 @@
 <div class="header mat-toolbar">
   <div class="txt">
     <div class="decor mat-snack-bar-container"></div>
-      <span>
-        {{title}}
-      </span>
+    <span>
+      {{title}}
+    </span>
     <div class="decor mat-snack-bar-container"></div>
   </div>
 </div>
+
+<mat-card class="user-card" *ngIf="email">
+  <div class="container">
+    <div class="user">
+      <button mat-mini-fab color="primary" aria-label="User avatar">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+
+      <div class="txt">
+        <div class="title">USER</div>
+        <div class="email">{{email}}</div>
+      </div>
+    </div>
+
+    <button (click)="logout()" matTooltip="Click to logout" mat-button>
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
+</mat-card>
 
 <div class="content">
   <router-outlet></router-outlet>

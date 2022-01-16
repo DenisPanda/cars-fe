@@ -6,7 +6,8 @@
   height: 100vh;
 }
 
-.header, .footer {
+.header,
+.footer {
   height: vars.$toolbar-height;
   flex-shrink: 0;
 }
@@ -60,5 +61,32 @@
   .header .txt {
     font-size: 1em;
   }
+}
 
+.user-card {
+  border-bottom: 1px solid vars.$gray-border;
+
+  overflow: hidden;
+  .container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+
+    .user {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      button {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .user-card .container {
+    justify-content: space-between;
+    margin-right: -25px;
+  }
 }

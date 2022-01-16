@@ -12,4 +12,8 @@ export namespace urlHelpers {
       `sortOrder=${sortOrder}`
     ].join('&')
   }
+
+  export const searchParams = (attribute: string, search: string) => {
+    return `${attribute}=${search}`;
+  }
 }

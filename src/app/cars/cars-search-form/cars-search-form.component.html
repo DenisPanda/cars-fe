@@ -1,0 +1,17 @@
+<form [formGroup]="form">
+
+  <mat-form-field>
+    <mat-label>Search term</mat-label>
+    <input matInput formControlName='search'>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Attribute</mat-label>
+    <mat-select formControlName='attribute'>
+      <mat-option value="make">Make</mat-option>
+      <mat-option value="model">Model</mat-option>
+      <mat-option value="year">Year</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</form>
