@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     // initialize firebase
     provideFirebaseApp(() => initializeApp(env.firebaseConfig)),
     BrowserModule,
+    MatSnackBarModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
@@ -27,7 +28,6 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     MatTooltipModule,
     HttpClientModule,
-    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
