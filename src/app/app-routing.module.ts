@@ -7,10 +7,8 @@ const routes: Routes = [
     path: '',
     /// @TODO: remove this
     pathMatch: 'full',
-    redirectTo: 'cars',
+    redirectTo: 'login',
     /////
-
-    // loadChildren: () => import('./cars/cars.module').then(m => m.CarsModule)
   },
   {
     path: 'cars',

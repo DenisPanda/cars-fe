@@ -29,7 +29,6 @@ import { MatOptionModule } from '@angular/material/core';
   ],
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
     CarsRoutingModule,
     FormsModule,
     ReactiveFormsModule,
