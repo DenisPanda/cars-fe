@@ -45,7 +45,7 @@ export class CarFormComponent implements OnInit {
           this.submitSuccess$.next();
         },
         error: (err) => {
-          console.error('Login error:', err);
+          console.error('Create vehicle error:', err);
 
           if (err) {
             if (err.status === 400) {
