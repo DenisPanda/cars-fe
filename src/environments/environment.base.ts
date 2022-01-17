@@ -11,6 +11,7 @@ export const baseConfig = () => ({
     appId: "1:243437391257:web:02e109d49bb67ae938d708"
   },
   apiUri: 'http://localhost:3000',
+  headerTitle: 'CARS',
   /**
    * Navigate to this route after successful login.
    */
