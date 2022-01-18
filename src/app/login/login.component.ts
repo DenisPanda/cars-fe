@@ -124,4 +124,8 @@ export class LoginComponent implements OnInit {
 
     this.cDR.detectChanges();
   }
+
+    navigateToMain(): void {
+      this.router.navigate(['/cars']);
+    }
 }

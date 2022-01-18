@@ -20,7 +20,7 @@
 
     <div class="btn-group">
       <button type="submit" mat-raised-button color="primary">SUBMIT</button>
-      <button type="button" matTooltip='Continue without login.' mat-raised-button color="secondary">CONTINUE</button>
+      <button type="button" (click)="navigateToMain()" matTooltip='Continue without login.' mat-raised-button color="secondary">CONTINUE</button>
     </div>
   </form>
 </mat-card>
