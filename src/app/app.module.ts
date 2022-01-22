@@ -18,6 +18,8 @@ import { environment as env } from 'src/environments/environment';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NotLoggedInDialogComponent } from './dialogs/not-logged-in-dialog/not-logged-in-dialog.component';
 import { CarFormDialogComponent } from './dialogs/car-form-dialog/car-form-dialog.component';
+import { NgxSpinnerModule } from "ngx-spinner";
+
 
 @NgModule({
   declarations: [
@@ -29,16 +31,17 @@ import { CarFormDialogComponent } from './dialogs/car-form-dialog/car-form-dialo
     // initialize firebase
     provideFirebaseApp(() => initializeApp(env.firebaseConfig)),
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     MatSnackBarModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     LayoutModule,
     MatIconModule,
     MatButtonModule,
     MatTooltipModule,
     MatDialogModule,
     MatCardModule,
+    NgxSpinnerModule
   ],
   providers: [
     [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],

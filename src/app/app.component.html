@@ -1,3 +1,4 @@
+<ngx-spinner size="large"></ngx-spinner>
 <button [matTooltip]="'Dark/light mode switch'" mat-mini-fab class="theme-btn" (click)="toggleTheme()">
   <ng-container [ngSwitch]="appTheme$ | async">
     <ng-container *ngSwitchCase="themeEnum.default">

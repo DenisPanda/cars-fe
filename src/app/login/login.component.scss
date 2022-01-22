@@ -42,6 +42,10 @@ form {
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+
+  .error {
+    text-align: center;
+  }
 }
 
 .title {

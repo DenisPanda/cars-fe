@@ -1,9 +1,18 @@
+import { UiService } from './../../services/ui.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { FetchApiService } from './../../services/fetch-api.service';
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { skip,map, switchMap, tap, debounceTime } from 'rxjs/operators';
-import { Observable, of as observableOf, merge, of, Subject } from 'rxjs';
+import { skip, map, switchMap, tap, debounceTime } from 'rxjs/operators';
+import {
+  Observable,
+  of as observableOf,
+  merge,
+  Subject,
+  catchError,
+  throwError,
+} from 'rxjs';
 import { Vehicle } from 'src/app/types/vehicle.types';
 import { CarsSearchAttribute } from 'src/app/types/cars';
 
@@ -19,7 +28,11 @@ export class CarsTableDataSource extends DataSource<Vehicle> {
   searchAttribute: CarsSearchAttribute | null = null;
   searchTerm: string | null = null;
 
-  constructor(private fAS: FetchApiService) {
+  constructor(
+    private fAS: FetchApiService,
+    private spinner: NgxSpinnerService,
+    private uiS: UiService
+  ) {
     super();
   }
 
@@ -41,10 +54,15 @@ export class CarsTableDataSource extends DataSource<Vehicle> {
         debounceTime(DEBOUNCE_VAL),
         switchMap(() => {
           return this.getPagedData();
+        }),
+        tap(() => {
+          this.spinner.hide('table');
         })
       );
     } else {
-      throw Error('Please set the paginator and sort on the data source before connecting.');
+      throw Error(
+        'Please set the paginator and sort on the data source before connecting.'
+      );
     }
   }
 
@@ -58,21 +76,39 @@ export class CarsTableDataSource extends DataSource<Vehicle> {
     let sort: string | null = null;
     let sortOrder: 1 | -1 | null = null;
 
+    this.spinner.show('table');
+
     if (this.sort?.active && this.sort?.direction) {
       sort = this.sort.active;
       sortOrder = this.sort.direction === 'asc' ? 1 : -1;
     }
 
     if (this.paginator) {
-      return this.fAS.getVehicles(this.paginator?.pageIndex + 1, this.paginator.pageSize, sort, sortOrder, this.searchTerm, this.searchAttribute).pipe(
-        tap(d => {
-          (this.paginator as MatPaginator).length = d.count;
-        }),
-      map(d => d.data)
-      )
+      return this.fAS
+        .getVehicles(
+          this.paginator?.pageIndex + 1,
+          this.paginator.pageSize,
+          sort,
+          sortOrder,
+          this.searchTerm,
+          this.searchAttribute
+        )
+        .pipe(
+          tap((d) => {
+            (this.paginator as MatPaginator).length = d.count;
+          }),
+          map((d) => d.data),
+          catchError((err) => {
+            console.error('Table loading error:', err);
+            this.uiS.snack('Error while loading table data.');
+
+            this.spinner.hide('table');
+
+            return throwError(() => new Error(err));
+          })
+        );
     } else {
-      return of([] as Vehicle[]);
+      return observableOf([] as Vehicle[]);
     }
   }
 }
-

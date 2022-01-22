@@ -5,10 +5,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    /// @TODO: remove this
     pathMatch: 'full',
     redirectTo: 'login',
-    /////
   },
   {
     path: 'cars',

@@ -1,3 +1,4 @@
+import { UiService } from './../../services/ui.service';
 import { CarsSearchForm } from './../../types/cars';
 import { Vehicle } from './../../types/vehicle.types';
 import { FetchApiService } from './../../services/fetch-api.service';
@@ -6,6 +7,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { CarsTableDataSource} from './cars-table-datasource';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-cars-table',
@@ -21,8 +23,8 @@ export class CarsTableComponent implements AfterViewInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'make', 'model', 'year'];
 
-  constructor(fAS: FetchApiService) {
-    this.dataSource = new CarsTableDataSource(fAS);
+  constructor(fAS: FetchApiService, spinner: NgxSpinnerService, uiS: UiService) {
+    this.dataSource = new CarsTableDataSource(fAS, spinner, uiS);
   }
 
   ngAfterViewInit(): void {

@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { capitalize as _capitalize } from 'lodash-es';
 import { UiService } from '../services/ui.service';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 const FIELD_MIN_LEN = 8;
 
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
     private fAS: FetchApiService,
     private authS: AuthService,
     private cDR: ChangeDetectorRef,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
@@ -52,12 +54,17 @@ export class LoginComponent implements OnInit {
     this.clearErrorMessages();
 
     if (this.form.valid) {
+      this.spinner.show();
+
       this.fAS.login(this.form.value).subscribe({
         next: (res) => {
+          this.spinner.hide();
           this.authS.login(res.token, res.email);
         },
         error: (err) => {
           console.error('Login error:', err);
+
+          this.spinner.hide();
 
           if (err) {
             if (err.status === 400) {

@@ -29,4 +29,16 @@
   <mat-paginator #paginator [length]="dataSource?.data?.length" [pageIndex]="0" [pageSize]="10"
     [pageSizeOptions]="[5, 10, 20, 50, 100]" aria-label="Select page">
   </mat-paginator>
+
+<div class="spinner">
+  <ngx-spinner [fullScreen]="false" name="table">
+    <div class="txt">
+      <span class="mat-color-primary mat-toolbar">
+        Loading table data...
+      </span>
+    </div>
+  </ngx-spinner>
 </div>
+</div>
+
+
