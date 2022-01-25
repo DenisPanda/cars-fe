@@ -133,3 +133,4 @@ Location:
  - Add analytics like HotJar or/and Google analytics
  - Create autocomplete control
  - Add error monitoring
+ - Prevent deployment to main if tests fail
