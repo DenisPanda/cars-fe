@@ -1,6 +1,8 @@
 # CARS-FE
 
 Cars app written in Angular 13.1.0 + Angular Material Design with theming.
+Deployed app [DEMO](https://cars-d27b5.web.app/login)
+
 
 
 # Build/run commands
